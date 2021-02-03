@@ -1,0 +1,95 @@
+---
+title:    |
+  | STAT 210
+  | Applied Statistics and Data Analysis: 
+  | Homework 1
+author: 
+date: "Due on Sept. 16/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Question 1
+(a) Create a vector named `smpl1` with a sample of size 100 from the set of categories 'bad', 'reg', 'norm', 'good', 'exc'. The categories 'bad' and 'exc' should have probability 0.1, 'reg' and 'good' should have probability 0.2, and 'norm', probability 0.4.
+
+(b) Create a factor named `fact1` using the vector `smpl1` as input.
+
+(c) Create an ordered factor named `fact2` using the vector `smpl1` as input. The levels should be in increasing order.
+
+(d) Now, you want to reduce the number of categories to three: 'bad' and 'reg' will now be 'poor', 'norm' will be 'normal' and 'good' and 'exc' will now be 'great'. One easy way to do this is to use the `labels` argument in the function `factor` to rename the levels. Look up the help page for `factor`; there is an example that will show you how to do this. Name the resulting ordered factor `fact3`.
+
+(e) Use the function `table` to create tables for the three factors you have made. Comment on the differences.
+
+
+# Question 2 
+You will need the file Human_data.txt. Place this file on your working environment.
+
+(a) Read the file Human_data.txt and store this in an object called `human`. Before reading the data, check whether the file has a header. If it does, use the appropriate argument in the read function to include the header.
+
+(b) Using `subset`, create a new data frame with the variables `Head_size, Height_cm, Weight_kg` from `human`. Call this new data frame `human1`.
+
+(c) Use the function `apply` twice to calculate the mean and standard deviation for each of the three variables in `human1`. Call the vectors you obtain `human.mean` and `human.sd`.
+
+(d) Use the function `sweep` twice, first to subtract the mean for each variable to the values in `human1` and then to divide by the standard deviation. Store the result in a data frame named `human.std`. 
+
+(e) The previous procedure is known as *standardization*. The resulting columns in the `human.std` should now have mean zero and variance equal to one. Verify this using `apply`.
+
+
+
+# Question 3
+This is an exercise on the use of lists. 
+
+(a) Start by creating two vectors. The first, called `vec1` has four numbers sampled uniformly at random from the integers between 11 and 19. The second, also of length four and called `vec2`, has a random sample of size four from the Poisson distribution with parameter 10.
+
+(b) Create a list named `q4.list` that has as a first component `vec1` and second component `vec2`. The names of these components should be `item1` and `item2`, respectively.
+
+(c) Using the function `rm`, remove `vec1` and `vec2`. Create a new element in the list called `item3` that has the outer product of `item1` and `item2` in that order.
+
+(d) Calculate the determinant of `item3`. 
+
+(e) Add the matrix in `item3` to the matrix `diag(4)` and store this in a new element of `q4.list` called `item4`.
+
+(f) Find the inverse of `item4` and verify it by matrix  multiplication.
+
+
+# Question 4
+
+In this exercise we want to use the Montecarlo method to estimate an integral. Consider the function $f(x) = 4 - x^2$ for $-2\leq x \leq 2$. We want to estimate
+\[
+\int_{-2}^2 f(x) \, dx
+\]
+
+
+```{r, fig.align='center',fig.width=4}
+curve(-(x)^2+4,-2,2, axes=FALSE, ylab='', xlab='') 
+segments(-2,0,-2,4); segments(2,0,2,4)
+segments(-2,4,2,4); segments(-2,0,2,0)
+axis(1); axis(2)
+```
+
+(a) Generate `n = 1000` random numbers with uniform distribution in the square $[-2,2]\times [0,4]$.
+
+(b) Count how many points fall below the curve $f(x) = 4 - x^2$. Estimate the integral using the fraction of these points with respect to the total number of points and the area of the square.
+
+(c) Compare with the value you obtain, calculating the value of the integral analytically.
+
+(d) Repeat for `n = 10000`, `100000`, and `1000000` and comment on the increase of accuracy in your estimate.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

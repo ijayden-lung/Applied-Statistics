@@ -1,0 +1,105 @@
+---
+title:      |
+  | STAT 210
+  | Applied Statistics and Data Analysis
+  | Second Exam - Solution
+author: " "
+date: "December 5, 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**You are reminded to adhere to the academic integrity code established at KAUST. Faults will be severely punished. This exam is open notes and open book but not  open internet.**
+
+**Do not write comments in Rmarkdown chunks. Use chunks only for code**
+
+
+**Show complete solutions to get full credit. Graphs must be correctly labeled** 
+
+
+```{r echo=FALSE}
+options(width=70, digits=5)
+```
+
+You need to load packages `HH`, `car` and `MASS`.
+
+
+# Question 1 (35 points)
+
+The data for this question is stored in the file data1.
+```{r}
+data1 <- data.frame(varX = c(
+  44.88657, 47.50854, 42.65520, 39.78659, 35.21680, 34.83094, 31.49840,
+  40.26644, 43.74769, 40.70925, 36.81988, 35.47477, 37.09535, 41.81317,
+  30.33722, 31.26408, 40.47749, 44.94063, 30.52410, 35.83751, 32.55051,
+  40.45046, 34.49412, 12.60000, 65.50000), varY = c(22.77396, 22.45083,
+  25.37946, 27.84469, 29.41199, 30.55449, 32.58305, 26.29850, 24.79797, 
+  26.75081, 27.74509, 28.01930, 26.57008, 23.84777, 31.44095, 32.27941, 
+  25.50564, 22.18837, 31.99969, 27.46206, 31.01480, 24.84488, 29.43218,
+  40.44475, 22.00000))
+```
+
+
+(a) Regress `varY` on `varX`. Do a scatterplot of the data, including the regression line. Interpret the slope of the regression line. Make diagnostic plots and **comment**. 
+
+
+
+(b) Draw plots to detect possible influence points. Are there points with high leverage? If there are, identify them. Study the effect that they have on the regression line (do an influence analysis). Is any of them an influential point? **Whether your answer is positive or negative, give arguments for your conclusions.**
+
+
+(c)
+Predict a value for a subject with `varX = 25` using a model that includes all the points and also using a model that excludes the influential point(s).
+
+
+
+# Question 2 (35 points)
+
+For this question, use the data set `uscrime` in the package `HH`. After loading the library, you need to run `data("uscrime")`. Do not mistake with `UScrime`. For this exercise, values for the variance inflation factor (vif) below 5 are considered acceptable. The following commands load the data:
+
+```{r message=FALSE, warning=FALSE}
+library(HH)
+data("uscrime")
+```
+
+
+(a) Fit a multiple regression model for `R` using all the other variables except `State`.  Look at the summary and variance inflation factors and **comment**.
+
+
+(b) Use the function `stepAIC` in package `MASS` to get a reduced model. Get information about this model using `summary` and look at the variance inflation factors. **Comment on these results**. 
+
+
+(c) Starting with the model produced in (b), drop, one by one,  any variables that have a vif greater than 5 or non-significant $p$-value (use $\alpha = 0.05$). Give a summary of your final model and write down the corresponding equation.
+
+
+
+(d) Check the validity of the model assumptions starting with diagnostics plots, and carry out any necessary tests. **Comment all your steps.** 
+
+
+
+
+# Question 3 (30 points)
+
+The data for this question are in the set `data3`, obtained with the following command:
+```{r}
+data3 <- subset(mtcars[c(-31,-29),],select = c(mpg,disp,am))
+```
+
+This data set has information on miles per gallon (`mpg`), displacement in cubic inches (`disp`), and transmission (`am`). The coding for transmission is 0 = automatic and 1 = manual.
+
+(a) Plot `mpg` as a function of `disp`. Color the points according to the value of `am`. Fit a regression model of `mpg` as a function of `disp` and add the regression line to the graph. Add a legend. Obtain a summary for this model. Do the standard diagnostic plots.
+**Comment**.
+
+
+
+(b) Fit a regression model for `mpg` including `disp` and `am` as regressors and also their interaction. Obtain a summary table and **comment on the result**. Simplify the model if possible. Draw the standard diagnostic plots and **comment**.
+
+
+(c) Draw a scatterplot for `mpg` as a function of `disp`. Color the points according to the value of `am`. Add the regression lines corresponding to `am=0` and `am = 1` in the same colors as the points. 
+
+
+(d) Write down the equation for your final model. Predict the mpg for a manual car with displacement 200 when the car is (i) automatic and (ii) manual.
+
+
